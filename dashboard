@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+
+class Dashboard extends StatelessWidget {
+  const Dashboard ({
+    super.key,
+    required this.firstname,
+    required this.lastname,
+    required this.email,
+    required this.password,
+  });
+  final String firstname;
+  final String lastname;
+  final String email;
+  final String password;
+
+  @override
+  Widget build (BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Dashboard'),
+        backgroundColor: Colors.purple[200],
+        centerTitle: true,
+      ),
+
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(color: Colors.purple),
+              child: Text('This is a drawer', style: TextStyle(color: Colors.black, fontSize: 28),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.home, color: Colors.purple),
+              title: Text('Home', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              onTap: () {
+                // Navigate to home page
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.person, color: Colors.purple),
+              title: Text('Profile', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              onTap: () {
+                // Navigate to home page
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.settings, color: Colors.purple),
+              title: Text('Settings', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+              onTap: () {
+                // Navigate to home page
+                Navigator.pop(context); // Close the drawer
+              },
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context,).showSnackBar(const SnackBar(content: Text('FAB Clicked!')));
+        },
+        child: const Icon(Icons.add, color: Colors.purple,), backgroundColor: Colors.lightBlueAccent, // The icon displayed on the button
+      ),
+
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text ('Welcome!', style: TextStyle(fontSize: 50),),
+            SizedBox(height: 10,),
+            Text('$firstname $lastname', style: TextStyle(fontSize: 30),),
+            SizedBox(height: 40),
+            Text ('Your Email: $email' , style: TextStyle(fontSize: 20),),
+            SizedBox(height: 10,),
+            Text ('Your Password: $password' , style: TextStyle(fontSize: 20),),
+            SizedBox(height: 30,),
+            ElevatedButton(onPressed: () {
+              Navigator.pop(context);
+            },
+              child: const Text ('Logout', style: TextStyle(fontSize: 24),),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
